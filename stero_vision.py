@@ -46,9 +46,11 @@ while True:
                     croped_imageL = cv2.cvtColor(croped_imageL,cv2.COLOR_RGB2GRAY)  
                     gray_scale_R  = cv2.cvtColor(frameR, cv2.COLOR_RGB2GRAY)
                     print(frameL.shape)
-                    for i in range(frameL.shape[1]):
-                        croped-imageR = gray_scale_R[res['topleft']['y']:res['bottomright']['y'],res['topleft']['x']:res['bottomright']['x'],:]
-                        subtracted_image = 
+                    """
+                    while mean_pre :
+                        croped_imageR = gray_scale_R[res['topleft']['y']:res['bottomright']['y'],res['topleft']['x']:res['bottomright']['x'],:]
+                        subtracted_image = gray_scale_R - croped_imageR
+                    """
 
 
         """
