@@ -2,6 +2,7 @@ import cv2
 from darkflow.net.build import TFNet
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 
 options ={
     'model' : 'cfg/yolo.cfg',
@@ -13,17 +14,22 @@ options ={
 
 tfnet = TFNet(options)
 
-capL = cv2.VideoCapture(2)
+capL = cv2.VideoCapture(0)
+capL.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+capL.set(cv2.CAP_PROP_FRAME_HEIGHT, 680)
 capR = cv2.VideoCapture(1)
+capR.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+capR.set(cv2.CAP_PROP_FRAME_HEIGHT, 680)
 XL=0
-XR=0
 distance =0
+count = 0
+subtracted_image_mean_pre = 5000
 
 while True:
     retL, frameL  = capL.read(cv2.IMREAD_COLOR)
     retR, frameR  = capR.read(cv2.IMREAD_COLOR)
 
-    if (retL == True) and (retR == True):
+    if (retL == True) and (retR == True):subtracted_image_mean
         resultL = tfnet.return_predict(frameL)
         #resultR = tfnet.return_predict(frameR)
 
@@ -48,7 +54,13 @@ while True:
                     print(frameL.shape)
                     for i in range(frameL.shape[1]):
                         croped-imageR = gray_scale_R[res['topleft']['y']:res['bottomright']['y'],res['topleft']['x']:res['bottomright']['x'],:]
-                        subtracted_image = 
+                        subtracted_image = np.abs(croped_imageR - croped_imageL)
+                        subtracted_image_mean = np.sum(subtracted_image,axis = 1)
+                        if subtracted_image_mean_pre > subtracted_image_mean:
+                            count = i
+
+
+                    
 
 
         """
