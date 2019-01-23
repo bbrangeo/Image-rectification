@@ -1,6 +1,6 @@
 <annotation>
   <folder>left</folder>
-  <filename>dog.jpg</filename>
+  <filename>Left14.jpg</filename>
   <segmented>0</segmented>
   <size>
     <width>800</width>
@@ -13,10 +13,10 @@
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>246</xmin>
-      <ymin>78</ymin>
-      <xmax>553</xmax>
-      <ymax>565</ymax>
+      <xmin>242</xmin>
+      <ymin>168</ymin>
+      <xmax>662</xmax>
+      <ymax>457</ymax>
     </bndbox>
   </object>
 </annotation>

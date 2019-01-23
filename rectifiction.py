@@ -102,14 +102,15 @@ while(True):
     img1 = cv2.imread(stringL)
     img2 = cv2.imread(stringR)
 
-    cv2.imshow("imageL", img1)
-    cv2.imshow("imageR", img2)
-    imgU1 = np.zeros((height,width,3), np.uint8)
-    imgU1 = cv2.remap(img1,map["map1x"],map["map1y"], cv2.INTER_LINEAR, imgU1, cv2.BORDER_CONSTANT, 0)
-    imgU2 = cv2.remap(img2, map["map2x"], map["map2y"], cv2.INTER_LINEAR)
+
+    imgU1 = cv2.remap(img1,map["map1x"],map["map1y"], cv2.INTER_LANCZOS4)
+    imgU2 = cv2.remap(img2, map["map2x"], map["map2y"], cv2.INTER_LANCZOS4)
 
     found1 ,corners1 = cv2.findChessboardCorners(imgU1,board_sz)
     found2 ,corners2 = cv2.findChessboardCorners(imgU2,board_sz)
+    
+    f1 ,c1 = cv2.findChessboardCorners(img1,board_sz)
+    f2 ,c2 = cv2.findChessboardCorners(img2,board_sz)
     if(found1 !=0 and found2!=0):
         if corners1[0][0][0] > corners1[62][0][0]:
                 corners1 = np.rot90(corners1,2).reshape(63,1,2)
@@ -118,14 +119,28 @@ while(True):
         if corners2[0][0][0] > corners2[62][0][0]:
                 corners2 = np.rot90(corners2,2).reshape(63,1,2)
                 corners2 = np.array(corners2)
+    if(f1 !=0 and f2!=0):
+        if c1[0][0][0] > c1[62][0][0]:
+            c1 = np.rot90(c1,2).reshape(63,1,2)
+            c1 = np.array(c1)
 
-        diff = corners1[20][0][1] - corners2[20][0][1]     
-        print(diff)
+        if c2[0][0][0] > c2[62][0][0]:
+            c2 = np.rot90(c2,2).reshape(63,1,2)
+            c2 = np.array(c2)
+
+        diff = corners1[0][0][1] - corners2[0][0][1]
+        diff1 = c1[0][0][1] - c2[0][0][1]     
+        print("without->"+str(diff)+"with->"+str(diff1))
         cv2.drawChessboardCorners(imgU1,board_sz,corners1,found1)
         cv2.drawChessboardCorners(imgU2,board_sz,corners2,found2)
 
+        cv2.drawChessboardCorners(img1,board_sz,c1,f1)
+        cv2.drawChessboardCorners(img2,board_sz,c2,f2)
+
     cv2.imshow("image1L", imgU1)
     cv2.imshow("image2R", imgU2)
+    cv2.imshow("image1", img1)
+    cv2.imshow("image2", img2)
     k = cv2.waitKey(5)
     if(k==27):
         break

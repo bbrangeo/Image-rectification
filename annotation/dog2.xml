@@ -1,5 +1,5 @@
 <annotation>
-  <folder>image</folder>
+  <folder>left</folder>
   <filename>dog2.jpg</filename>
   <segmented>0</segmented>
   <size>
@@ -8,15 +8,15 @@
     <depth>3</depth>
   </size>
   <object>
-    <name>fidget_spinner</name>
+    <name>block</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>10</xmin>
-      <ymin>39</ymin>
-      <xmax>194</xmax>
-      <ymax>178</ymax>
+      <xmin>3</xmin>
+      <ymin>30</ymin>
+      <xmax>195</xmax>
+      <ymax>182</ymax>
     </bndbox>
   </object>
 </annotation>
