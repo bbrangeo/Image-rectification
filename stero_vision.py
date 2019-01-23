@@ -94,6 +94,7 @@ while True:
         
 
     #print("i"+str(i))    
+    disparity1=0
     disparity = abs(XL-XR)
     x = imgU1.shape[0]
     print("x:"+str(x)+"dis:"+str(disparity))
