@@ -10,9 +10,9 @@ br_list = []
 object_list = []
 
 #constant
-image_folder ='left'
+image_folder ='image'
 savedir = 'annotation'
-obj = 'block'
+obj = 'fidget_spinner'
 
 def line_select_callback(clk ,rls):
     global tl_list
@@ -38,7 +38,7 @@ def onekeypress(event):
         plt.close()
 
 if __name__ == '__main__':
-    for n , image_file in enumerate(os.scandir(image_folder)): #Counts number of image in folder name image _folder
+    for n , image_file in enumerate(os.scandir('image_folder')): #Counts number of image in folder name image _folder
         img = image_file
         fig ,ax = plt.subplots(1)
         image = cv2.imread(image_file.path)
